@@ -65,12 +65,12 @@ local function traverse_subcommands(args, parent)
 		if subcommand then
 			traverse_subcommands(vim.list_slice(args, 2, #args), subcommand)
 		elseif parent.passthrough then
-			parent.handle(args, require("easy-dotnet.options").options)
+			parent.handle(args, require("code-playground.options").options)
 		else
 			print("Invalid subcommand:", args[1])
 		end
 	elseif parent.handle then
-		parent.handle(args, require("easy-dotnet.options").options)
+		parent.handle(args, require("code-playground.options").options)
 	else
 		local required = vim.tbl_keys(parent.subcommands)
 		print("Missing required argument " .. vim.inspect(required))
